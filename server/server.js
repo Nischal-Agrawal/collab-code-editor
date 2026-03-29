@@ -1,0 +1,97 @@
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+const cors = require("cors");
+const fetch = require("node-fetch");
+
+
+const app = express();
+const server = http.createServer(app);
+
+
+app.use(cors());
+app.use(express.json());
+
+
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+// Import socket handler
+require("./socket/socketHandler")(io);
+
+
+app.post("/run", async (req, res) => {
+  try {
+    const { code, language } = req.body;
+
+    // Default
+    let pistonLang = "javascript";
+    let version = "18.15.0";
+
+    // Language mapping
+    switch (language) {
+      case "python":
+        pistonLang = "python";
+        version = "3.10.0";
+        break;
+
+      case "cpp":
+        pistonLang = "cpp";
+        version = "10.2.0";
+        break;
+
+      case "javascript":
+      default:
+        pistonLang = "javascript";
+        version = "18.15.0";
+        break;
+    }
+
+    //  CALL PISTON API
+    const response = await fetch("https://emkc.org/api/v2/piston/execute", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        language: pistonLang,
+        version: version,
+        files: [
+          {
+            content: code
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+
+    // Debug log
+    console.log("PISTON RESPONSE:", data);
+
+    // Send response to frontend
+    res.json(data);
+
+  } catch (err) {
+    console.error("Execution Error:", err);
+    res.status(500).json({
+      error: "Execution failed",
+      details: err.message
+    });
+  }
+});
+
+
+// server.listen(5000, () => {
+//   console.log("Server running on http://localhost:5000");
+// });
+
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Code Editor</title>
+  <!-- <link rel="stylesheet" href="../src/css/styles.css"> -->
+  <link rel="stylesheet" href="/src/css/styles.css">
+</head>
+<body>
+
+<div id="joinScreen">
+  <input id="username" placeholder="Enter username">
+  <input id="roomId" placeholder="Enter room ID">
+  <button id="joinBtn">Join Room</button>
+</div>
+
+<!-- <div id="editorScreen" style="display:none;">
+  <h3>Users:</h3>
+  <ul id="users"></ul>
+
+  <textarea id="editor" rows="20" cols="80"></textarea>
+</div> -->
+<select id="language">
+  <option value="javascript">JavaScript</option>
+  <option value="python">Python</option>
+  <option value="cpp">C++</option>
+</select>
+
+<div id="editorScreen" style="display:none;">
+  <h3>Users:</h3>
+  <ul id="users"></ul>
+
+  <div id="editor" style="height:500px;"></div>
+</div>
+
+<button id="copyRoom">Copy Room ID</button>
+
+<button id="runCode">Run Code</button>
+<pre id="output"></pre>
+
+
+
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+
+<!-- <script type="module" src="../src/js/main.js"></script>
+
+<script type="module" src="../src/js/main.js"></script> -->
+
+<script type="module" src="/src/js/main.js"></script>
+
+</body>
+</html>
