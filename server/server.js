@@ -8,6 +8,8 @@ const fetch = require("node-fetch");
 const app = express();
 const server = http.createServer(app);
 
+const { getTotalUsers } = require("./services/roomService");
+
 
 app.use(cors());
 app.use(express.json());
@@ -116,4 +118,27 @@ app.use((req, res) => {
     <h2>404 - Route Not Found</h2>
     <p>This endpoint does not exist.</p>
   `);
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "OK",
+    uptime: process.uptime(),
+    timestamp: new Date()
+  });
+});
+
+app.get("/status", (req, res) => {
+  res.json({
+    status: "Running",
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
+    platform: process.platform
+  });
+});
+
+app.get("/users", (req, res) => {
+  res.json({
+    activeUsers: getTotalUsers()
+  });
 });

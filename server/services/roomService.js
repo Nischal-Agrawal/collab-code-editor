@@ -36,11 +36,31 @@ function getCode(roomId) {
   return rooms[roomId]?.code || "";
 }
 
+function getTotalUsers() {
+  let total = 0;
+
+  for (let roomId in rooms) {
+    total += rooms[roomId].users.length;
+  }
+
+  return total;
+}
+
+// module.exports = {
+//   createRoom,
+//   addUser,
+//   removeUser,
+//   updateCode,
+//   getUsers,
+//   getCode
+// };
+
 module.exports = {
   createRoom,
   addUser,
   removeUser,
   updateCode,
   getUsers,
-  getCode
+  getCode,
+  getTotalUsers
 };
