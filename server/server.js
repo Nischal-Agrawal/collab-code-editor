@@ -12,6 +12,20 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  // res.send(`
+  //   <h1>🚀 Collaborative Code Editor Backend</h1>
+  //   <p>Status: Running</p>
+  //   <p>Use frontend to interact with this server.</p>
+  // `)
+  res.send(`
+  <div style="font-family: Arial; text-align:center; margin-top:50px;">
+    <h1>🚀 Backend Running</h1>
+    <p>Real-time server is active</p>
+  </div>
+  `);
+});
+
 
 const io = socketIo(server, {
   cors: {
@@ -96,3 +110,10 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+
+app.use((req, res) => {
+  res.status(404).send(`
+    <h2>404 - Route Not Found</h2>
+    <p>This endpoint does not exist.</p>
+  `);
+});
