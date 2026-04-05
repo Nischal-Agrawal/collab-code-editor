@@ -1,9 +1,155 @@
-body {
-  font-family: Arial;
-  padding: 20px;
+:root {
+  --bg: #1e1e1e;
+  --panel: #2d2d2d;
+  --sidebar: #252526;
+  --text: #ffffff;
+  --accent: #4CAF50;
 }
 
-textarea {
-  width: 100%;
-  font-family: monospace;
+.light {
+  --bg: #f5f5f5;
+  --panel: #ffffff;
+  --sidebar: #eaeaea;
+  --text: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* JOIN */
+.join-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join-card {
+  background: var(--panel);
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.join-card input, .join-card button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 50px;
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  padding: 5px 10px;
+  background: #333;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--accent);
+}
+
+/* MAIN */
+.main {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  background: var(--sidebar);
+  padding: 15px;
+}
+
+#users li {
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* AVATAR */
+.avatar {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* EDITOR */
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#editor {
+  flex: 1;
+}
+
+/* OUTPUT */
+.output {
+  height: 150px;
+  background: #111;
+  padding: 10px;
+}
+
+/* TYPING */
+#typing {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* BUTTONS */
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* TOAST */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#toast.show {
+  opacity: 1;
 }

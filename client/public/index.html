@@ -1,56 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Code Editor</title>
-  <!-- <link rel="stylesheet" href="../src/css/styles.css"> -->
-  <!-- <link rel="stylesheet" href="/src/css/styles.css"> -->
-  <!-- <link rel="stylesheet" href="/client/src/css/styles.css"> -->
-  <!-- <link rel="stylesheet" href="/src/css/styles.css"> -->
+  <title>Collab Editor Pro</title>
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
-<div id="joinScreen">
-  <input id="username" placeholder="Enter username">
-  <input id="roomId" placeholder="Enter room ID">
-  <button id="joinBtn">Join Room</button>
+<!-- JOIN -->
+<div id="joinScreen" class="join-screen">
+  <div class="join-card">
+    <h2>Join Room</h2>
+    <input id="username" placeholder="Username">
+    <input id="roomId" placeholder="Room ID">
+    <button id="joinBtn">Join</button>
+  </div>
 </div>
 
-<!-- <div id="editorScreen" style="display:none;">
-  <h3>Users:</h3>
-  <ul id="users"></ul>
+<!-- APP -->
+<div id="editorScreen" class="app" style="display:none;">
 
-  <textarea id="editor" rows="20" cols="80"></textarea>
-</div> -->
-<select id="language">
-  <option value="javascript">JavaScript</option>
-  <option value="python">Python</option>
-  <option value="cpp">C++</option>
-</select>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="title">⚡ Collab Editor</div>
 
-<div id="editorScreen" style="display:none;">
-  <h3>Users:</h3>
-  <ul id="users"></ul>
+    <div class="tabs">
+      <div class="tab active">main.js</div>
+      <div class="tab">index.html</div>
+    </div>
 
-  <div id="editor" style="height:500px;"></div>
+    <div class="controls">
+      <select id="language">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+      </select>
+
+      <button id="themeToggle">🌙</button>
+      <button id="copyRoom">Copy</button>
+      <button id="runCode">Run</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h3>Users</h3>
+      <ul id="users"></ul>
+
+      <div id="typing"></div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="editor-container">
+      <div id="editor"></div>
+
+      <div class="output">
+        <h4>Output</h4>
+        <pre id="output"></pre>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<button id="copyRoom">Copy Room ID</button>
+<!-- TOAST -->
+<div id="toast"></div>
 
-<button id="runCode">Run Code</button>
-<pre id="output"></pre>
-
-
-
-<!-- <script src="/socket.io/socket.io.js"></script> -->
-
-<!-- <script type="module" src="../src/js/main.js"></script>
-
-<script type="module" src="../src/js/main.js"></script> -->
-
-<!-- <script type="module" src="/src/js/main.js"></script> -->
-<!-- <script type="module" src="/client/src/js/main.js"></script> -->
-<!-- <script type="module" src="/src/js/main.js"></script> -->
 <script type="module" src="./js/main.js"></script>
 
 </body>
