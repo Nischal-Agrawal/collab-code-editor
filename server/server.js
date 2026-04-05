@@ -106,20 +106,6 @@ app.post("/run", async (req, res) => {
 //   console.log("Server running on http://localhost:5000");
 // });
 
-const PORT = process.env.PORT || 5000;
-
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-
-app.use((req, res) => {
-  res.status(404).send(`
-    <h2>404 - Route Not Found</h2>
-    <p>This endpoint does not exist.</p>
-  `);
-});
-
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
@@ -142,3 +128,17 @@ app.get("/users", (req, res) => {
     activeUsers: getTotalUsers()
   });
 });
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+app.use((req, res) => {
+  res.status(404).send(`
+    <h2>404 - Route Not Found</h2>
+    <p>This endpoint does not exist.</p>
+  `);
+});
+
