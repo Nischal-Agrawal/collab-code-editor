@@ -3,9 +3,26 @@ import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 
 let socket;
 
+// export function connectSocket() {
+//   // socket = io("http://localhost:5000");
+//   // socket = io("https://collab-code-editor-6k61.onrender.com/");
+//   socket = io("https://collab-code-editor-6k61.onrender.com", {
+//   transports: ["websocket"],
+//   });
+// }
+
 export function connectSocket() {
-  // socket = io("http://localhost:5000");
-  socket = io("https://collab-code-editor-6k61.onrender.com/");
+  socket = io("https://collab-code-editor-6k61.onrender.com", {
+    transports: ["websocket"],
+  });
+
+  socket.on("connect", () => {
+    console.log("✅ Connected to backend:", socket.id);
+  });
+
+  socket.on("connect_error", (err) => {
+    console.error("❌ Connection error:", err.message);
+  });
 }
 
 export function joinRoom(roomId, username) {
